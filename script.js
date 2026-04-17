@@ -74,11 +74,29 @@ document.querySelectorAll(
   revealObserver.observe(el);
 });
 
-// ── Contact form ──
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+// ── Contact form — Web3Forms ──
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault();
   const note = document.getElementById('formNote');
-  note.textContent = "Message sent! We'll be in touch soon.";
-  this.reset();
+  const btn  = this.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const res  = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: new FormData(this)
+  });
+  const data = await res.json();
+
+  if (data.success) {
+    note.textContent = "Message sent! We'll be in touch soon.";
+    note.style.color = '#fff';
+    this.reset();
+  } else {
+    note.textContent = 'Something went wrong. Try again.';
+    note.style.color = '#ff4444';
+  }
+  btn.textContent = 'Send Message';
+  btn.disabled = false;
   setTimeout(() => { note.textContent = ''; }, 5000);
 });
