@@ -20,28 +20,6 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// ── Hero mouse parallax ──
-const heroContent = document.getElementById('heroContent');
-const heroSection = document.getElementById('hero');
-if (heroSection) {
-  heroSection.addEventListener('mousemove', e => {
-    const rect = heroSection.getBoundingClientRect();
-    const cx = (e.clientX - rect.left) / rect.width  - 0.5;
-    const cy = (e.clientY - rect.top)  / rect.height - 0.5;
-    heroContent.style.transform = `translate(${cx * 18}px, ${cy * 10}px)`;
-  });
-  heroSection.addEventListener('mouseleave', () => {
-    heroContent.style.transform = '';
-  });
-}
-
-// ── Hero glitch on hover ──
-const heroName = document.querySelector('.hero-name');
-if (heroName) {
-  heroName.addEventListener('mouseenter', () => heroName.classList.add('glitch'));
-  heroName.addEventListener('mouseleave', () => heroName.classList.remove('glitch'));
-}
-
 // ── Scroll-driven video scrubbing ──
 const videoContainer = document.getElementById('videoScrollContainer');
 const video          = document.getElementById('trailerVideo');
