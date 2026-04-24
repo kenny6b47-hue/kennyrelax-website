@@ -713,6 +713,149 @@ section { padding: 100px 0; }
   .stream-btn { justify-content: center; }
 }
 
+/* ── Discography ── */
+#discography { background: var(--bg2); padding-bottom: 0; }
+
+.disco-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  padding: 40px 24px 60px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.disco-scroll::-webkit-scrollbar { display: none; }
+.disco-scroll.dragging { cursor: grabbing; }
+
+.disco-cards {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  width: max-content;
+  padding: 0 max(24px, calc((100vw - 1100px) / 2));
+}
+
+.disco-era-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 12px 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.disco-era-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  align-self: stretch;
+  position: relative;
+  padding: 0 16px;
+}
+
+.disco-era-divider::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--border);
+}
+
+.disco-era-divider span {
+  background: var(--bg2);
+  padding: 8px 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  position: relative;
+  z-index: 1;
+}
+
+.disco-card {
+  width: 160px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.disco-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.disco-card.highlight { border-color: rgba(255,255,255,0.2); }
+
+.disco-art {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #0f0f0f;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.disco-art.kt { color: rgba(255,255,255,0.2); }
+.disco-art.kr { color: rgba(255,255,255,0.5); }
+
+.disco-card.highlight .disco-art { color: var(--gold); }
+
+.disco-year {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.disco-type {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  width: fit-content;
+}
+.disco-type.album  { background: var(--gold); color: #000; }
+.disco-type.ep     { background: #333; color: var(--text); }
+.disco-type.single { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+
+.disco-card h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.disco-card a {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  margin-top: auto;
+}
+.disco-card:hover a { color: var(--gold); }
+
 /* ── Video Section — scroll-driven ── */
 #video { padding: 0; background: #000; }
 

@@ -20,6 +20,27 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
+// ── Discography drag-to-scroll ──
+const discoScroll = document.getElementById('discoScroll');
+if (discoScroll) {
+  let isDown = false, startX, scrollLeft;
+  discoScroll.addEventListener('mousedown', e => {
+    isDown = true;
+    discoScroll.classList.add('dragging');
+    startX = e.pageX - discoScroll.offsetLeft;
+    scrollLeft = discoScroll.scrollLeft;
+  });
+  discoScroll.addEventListener('mouseleave', () => { isDown = false; discoScroll.classList.remove('dragging'); });
+  discoScroll.addEventListener('mouseup',    () => { isDown = false; discoScroll.classList.remove('dragging'); });
+  discoScroll.addEventListener('mousemove',  e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - discoScroll.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    discoScroll.scrollLeft = scrollLeft - walk;
+  });
+}
+
 // ── Scroll-driven video scrubbing ──
 const videoContainer = document.getElementById('videoScrollContainer');
 const video          = document.getElementById('trailerVideo');
